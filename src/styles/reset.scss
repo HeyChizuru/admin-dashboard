@@ -1,0 +1,285 @@
+/* 现代CSS重置样式 */
+
+/* 盒模型重置 */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+/* 移除默认边距和填充 */
+* {
+  margin: 0;
+  padding: 0;
+}
+
+/* 设置核心根元素默认值 */
+html {
+  font-size: 16px;
+  line-height: 1.15;
+  -webkit-text-size-adjust: 100%;
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* 设置body的默认样式 */
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1.5;
+  color: #212529;
+  background-color: #fff;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* 重置标题样式 */
+h1, h2, h3, h4, h5, h6 {
+  margin: 0;
+  font-weight: 500;
+  line-height: 1.2;
+}
+
+/* 重置段落样式 */
+p {
+  margin: 0;
+}
+
+/* 重置列表样式 */
+ol, ul {
+  list-style: none;
+}
+
+/* 重置链接样式 */
+a {
+  color: inherit;
+  text-decoration: none;
+  background-color: transparent;
+}
+
+a:hover {
+  text-decoration: none;
+}
+
+/* 重置图片和媒体元素 */
+img, svg, video, audio, canvas {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+/* 重置表单元素 */
+button, input, optgroup, select, textarea {
+  margin: 0;
+  font-family: inherit;
+  font-size: inherit;
+  line-height: inherit;
+}
+
+button, input {
+  overflow: visible;
+}
+
+button, select {
+  text-transform: none;
+}
+
+button, [type="button"], [type="reset"], [type="submit"] {
+  -webkit-appearance: button;
+  cursor: pointer;
+}
+
+button::-moz-focus-inner,
+[type="button"]::-moz-focus-inner,
+[type="reset"]::-moz-focus-inner,
+[type="submit"]::-moz-focus-inner {
+  padding: 0;
+  border-style: none;
+}
+
+button:-moz-focusring,
+[type="button"]:-moz-focusring,
+[type="reset"]:-moz-focusring,
+[type="submit"]:-moz-focusring {
+  outline: 1px dotted ButtonText;
+}
+
+textarea {
+  overflow: auto;
+  resize: vertical;
+}
+
+/* 重置表格样式 */
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+/* 重置fieldset样式 */
+fieldset {
+  min-width: 0;
+  padding: 0;
+  margin: 0;
+  border: 0;
+}
+
+/* 重置legend样式 */
+legend {
+  display: block;
+  width: 100%;
+  max-width: 100%;
+  padding: 0;
+  margin-bottom: 0.5rem;
+  font-size: 1.5rem;
+  line-height: inherit;
+  color: inherit;
+  white-space: normal;
+}
+
+/* 重置进度条样式 */
+progress {
+  vertical-align: baseline;
+}
+
+/* 重置隐藏属性 */
+[hidden] {
+  display: none !important;
+}
+
+/* 重置对话框样式 */
+dialog {
+  background-color: white;
+  border: solid;
+  color: black;
+  display: block;
+  height: -moz-fit-content;
+  height: -webkit-fit-content;
+  height: fit-content;
+  left: 0;
+  margin: auto;
+  padding: 1em;
+  position: absolute;
+  right: 0;
+  width: -moz-fit-content;
+  width: -webkit-fit-content;
+  width: fit-content;
+}
+
+dialog:not([open]) {
+  display: none;
+}
+
+/* 重置details和summary样式 */
+details {
+  display: block;
+}
+
+summary {
+  display: list-item;
+}
+
+/* 重置模板和脚本样式 */
+template {
+  display: none;
+}
+
+/* 重置搜索框样式 */
+[type="search"] {
+  -webkit-appearance: textfield;
+  outline-offset: -2px;
+}
+
+[type="search"]::-webkit-search-decoration {
+  -webkit-appearance: none;
+}
+
+/* 重置滚动条样式 */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #888;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+
+/* 重置选择样式 */
+::selection {
+  background-color: #b3d4fc;
+  color: #000;
+  text-shadow: none;
+}
+
+/* 重置占位符样式 */
+::placeholder {
+  color: #999;
+  opacity: 1;
+}
+
+/* 重置焦点样式 */
+:focus {
+  outline: 2px solid #4A90E2;
+  outline-offset: 2px;
+}
+
+/* 重置打印样式 */
+@media print {
+  *,
+  *::before,
+  *::after {
+    background: transparent !important;
+    color: black !important;
+    box-shadow: none !important;
+    text-shadow: none !important;
+  }
+  
+  a,
+  a:visited {
+    text-decoration: underline;
+  }
+  
+  abbr[title]::after {
+    content: " (" attr(title) ")";
+  }
+  
+  pre {
+    white-space: pre-wrap !important;
+  }
+  
+  pre,
+  blockquote {
+    border: 1px solid #999;
+    page-break-inside: avoid;
+  }
+  
+  thead {
+    display: table-header-group;
+  }
+  
+  tr,
+  img {
+    page-break-inside: avoid;
+  }
+  
+  p,
+  h2,
+  h3 {
+    orphans: 3;
+    widows: 3;
+  }
+  
+  h2,
+  h3 {
+    page-break-after: avoid;
+  }
+}
