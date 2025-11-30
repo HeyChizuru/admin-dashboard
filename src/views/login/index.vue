@@ -21,14 +21,29 @@
   </div>
 </template>
 
-<script setup>
+<script setup lang="ts">
 import { User, Lock } from '@element-plus/icons-vue'
-import { reactive } from 'vue';
+import { reactive } from 'vue'
+import { useUserStore } from '@/stores/modules/user'
+import { useRouter } from 'vue-router'
+import { ElNotification } from 'element-plus'
+let useStore = useUserStore()
 // 收集账号密码
 let loginForm = reactive({ username: '', password: '' })
+let $router = useRouter()
 //登录事件
-const login = () => {
-
+const login = async () => {
+  // 登录成功会拿到token token是每一个账号的唯一标识
+  try {
+    await useStore.login(loginForm)
+    $router.push('/')
+  } catch (error) {
+    console.log(error)
+    ElNotification({
+      type: 'error',
+      message: (error as Error).message
+    })
+  }
 }
 </script>
 
