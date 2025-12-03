@@ -3,21 +3,156 @@ export const constantroutes=[
     {
     path: '/login',
     name: 'login',
-    component: () => import('@/views/login/index.vue')
+    component: () => import('@/views/login/index.vue'),
+    meat:{
+      title:'login',
+      hidden:false
+    }
   },
   {
     path:'/',
-    name:'home',
-    component:()=>import('@/views/home/index.vue')
+    name:'layout',
+    component:()=>import('@/layout/index.vue'),
+    meat:{
+      title:'主页',
+      hidden:true,
+      icon:'House'
+    },
+    redirect:'/home',
+    children:[
+      // 子路由会寻找父路由的占位符
+      {
+        path:'home',
+        name:'home',
+        component:()=>import('@/views/home/index.vue'),
+        meat:{
+          title:'主页',
+          hidden:true,
+          icon:'House'
+        },
+      },
+    ]
   },
   {
     path:'/404',
     name:'404',
-    component:()=>import('@/views/404/index.vue')
+    component:()=>import('@/views/404/index.vue'),
+    meat:{
+      title:'404',
+      hidden:false
+    }
   },
   {
     path:'/:pathMatch(.*)*',
     name:'any',
-    redirect:'/404'
+    redirect:'/404',
+    meat:{
+      title:'',
+      hidden:false
+    }
+  },
+  {
+    path:'/screen',
+    name:'Screen',
+    component:()=>import('@/views/screen/index.vue'),
+    meat:{
+      title:'数据大屏',
+      hidden:true,
+      icon:'Platform'
+    }
+  },
+  {
+    path:'/acl',
+    name:'Acl',
+    component:()=>import('@/layout/index.vue'),
+    meat:{
+      title:'权限管理',
+      hidden:true,
+      icon:'Lock'
+    },
+    children:[
+      {
+    path:'/acl/user',
+    name:'User',
+    component:()=>import('@/views/acl/user/index.vue'),
+    meat:{
+      title:'用户管理',
+      hidden:true,
+      icon:'Platform'
+    }
+  },
+     {
+    path:'/acl/rul',
+    name:'Rul',
+    component:()=>import('@/views/acl/rul/index.vue'),
+    meat:{
+      title:'角色管理',
+      hidden:true,
+      icon:'Platform'
+    }
+  },
+     {
+    path:'/acl/premission',
+    name:'Premission',
+    component:()=>import('@/views/acl/premission/index.vue'),
+    meat:{
+      title:'菜单管理',
+      hidden:true,
+      icon:'Platform'
+    }
+  },
+    ]
+  },
+  {
+    path:'/product',
+    name:'Product',
+    component:()=>import('@/layout/index.vue'),
+    meat:{
+      title:'商品管理',
+      hidden:true,
+      icon:'Platform'
+    },
+    children:[
+      {
+        path:'/product/attr',
+        name:'Attr',
+        component:()=>import('@/views/product/attr/index.vue'),
+        meat:{
+          title:'属性管理',
+          hidden:true,
+          icon:'Platform'
+        },
+      },
+      {
+        path:'/product/sku',
+        name:'Sku',
+        component:()=>import('@/views/product/sku/index.vue'),
+        meat:{
+          title:'SKU管理',
+          hidden:true,
+          icon:'Platform'
+        }
+      },
+      {
+        path:'/product/spu',
+        name:'Spu',
+        component:()=>import('@/views/product/spu/index.vue'),
+        meat:{
+          title:'SPU管理',
+          hidden:true,
+          icon:'Platform'
+        }
+      },
+      {
+        path:'/product/trademark',
+        name:'Trademark',
+        component:()=>import('@/views/product/trademark/index.vue'),
+        meat:{
+          title:'品牌管理',
+          hidden:true,
+          icon:'Platform'
+        }
+      },
+    ]
   },
   ]

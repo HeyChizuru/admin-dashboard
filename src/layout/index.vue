@@ -1,0 +1,83 @@
+<template>
+  <div class='layout_container'>
+    <div class="layout_slider">
+      <div class="logo">
+        <a href="/"><img src="/logo.svg" alt=""></a>
+        <h1>后台管理系统</h1>
+      </div>
+      <!-- 菜单 -->
+      <el-scrollbar class="scrollbar">
+        <el-menu background-color="black" text-color="white" router :default-active="useRoute().path">
+          <Menu :menulist="constantroutes"></Menu>
+        </el-menu>
+      </el-scrollbar>
+    </div>
+    <div class="layout_right">
+      <div class="layout_tabber"></div>
+      <div class="layout_main">
+        <RouterView />
+      </div>
+    </div>
+  </div>
+</template>
+
+<script setup lang="ts">
+import Menu from './menu/index.vue'
+import { constantroutes } from '@/router/routers'
+import { RouterView } from 'vue-router'
+import { useRoute } from 'vue-router'
+</script>
+
+<style scoped lang="scss">
+.layout_container {
+  display: flex;
+  width: 100%;
+  height: 100vh;
+  background: blue;
+
+  // 左侧导航
+  .layout_slider {
+    width: $base-menu-width;
+    height: 100vh;
+    background: $base-menu-bg;
+
+    .logo {
+      display: flex;
+      align-items: center;
+
+      a img {
+        width: 60px;
+        height: $base-menu-logo;
+      }
+
+      h1 {
+        color: white;
+      }
+    }
+
+    .scrollbar {
+      height: calc(100vh - $base-menu-logo);
+    }
+  }
+
+  // 右侧
+  .layout_right {
+    width: 100%;
+
+    // 顶部导航
+    .layout_tabber {
+      width: 100%;
+      height: $base-tabber-high;
+      background: red;
+    }
+
+    // 主要内容
+    .layout_main {
+      width: 100%;
+      height: calc(100vh - $base-tabber-high);
+      background: yellow;
+      padding: 20px;
+    }
+  }
+}
+</style>

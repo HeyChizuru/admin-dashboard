@@ -3,13 +3,13 @@
     <el-row> <!-- elment的布局栅格组件-->
       <el-col :span="12" :xs="0"></el-col>
       <el-col :span="12" :xs="24">
-        <el-form class="login_form">
+        <el-form class="login_form" :model="loginForm" :rules="rules" ref="l_form">
           <h1>Hello</h1>
           <h2>欢迎来到后台管理系统</h2>
-          <el-form-item>
+          <el-form-item prop="username">
             <el-input :prefix-icon="User" v-model="loginForm.username"></el-input>
           </el-form-item>
-          <el-form-item>
+          <el-form-item prop="password">
             <el-input type="possword" :prefix-icon="Lock" v-model="loginForm.password" show-password></el-input>
           </el-form-item>
           <el-form-item>
@@ -23,16 +23,30 @@
 
 <script setup lang="ts">
 import { User, Lock } from '@element-plus/icons-vue'
-import { reactive } from 'vue'
+import { reactive, ref } from 'vue'
 import { useUserStore } from '@/stores/modules/user'
 import { useRouter } from 'vue-router'
 import { ElNotification } from 'element-plus'
 let useStore = useUserStore()
 // 收集账号密码
-let loginForm = reactive({ username: '', password: '' })
+let loginForm = reactive({ username: 'admin', password: '123456' })
+// 表单校验
+const rules = {
+  username: [
+    { required: true, min: 5, message: '账号长度至少为5', trigger: 'change' },
+    { required: true, message: '账号不能为空', trigger: 'blur' }
+  ],
+  password: [
+    { required: true, min: 6, message: '密码长度至少为6', trigger: 'change' },
+    { required: true, message: '密码不能为空', trigger: 'blur' }
+  ]
+}
+const l_form = ref()
 let $router = useRouter()
 //登录事件
 const login = async () => {
+  //表单校验,防止发请求 
+  await l_form.value.validate()
   // 登录成功会拿到token token是每一个账号的唯一标识
   try {
     await useStore.login(loginForm)

@@ -2,6 +2,7 @@ import request from '@/utils/request'
 import type { loginForm  } from '@/api/user/type.ts'
 import type { LoginResponse } from '@/api/user/type.ts'
 // 用户登录
+// request会返回一个Promise对象，Promise返回的情况有两种，所以LoginResponse对象要包含错误和成功
 export const relogin = (data:loginForm): Promise<LoginResponse> => {
   return request({
     url: '/user/login',
