@@ -27,6 +27,11 @@ export default defineConfig(({ command }) => {
         '@': fileURLToPath(new URL('./src', import.meta.url))
       },
     },
+      server: {
+        open: true,  // 自动打开浏览器
+        host: 'localhost',
+        port: 5173
+      },
     css: {
       preprocessorOptions: {
         scss: {

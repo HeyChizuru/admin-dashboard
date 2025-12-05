@@ -78,7 +78,7 @@ export const constantroutes=[
     meat:{
       title:'用户管理',
       hidden:true,
-      icon:'Platform'
+      icon:'User'
     }
   },
      {
@@ -88,7 +88,7 @@ export const constantroutes=[
     meat:{
       title:'角色管理',
       hidden:true,
-      icon:'Platform'
+      icon:'UserFilled'
     }
   },
      {
@@ -98,7 +98,7 @@ export const constantroutes=[
     meat:{
       title:'菜单管理',
       hidden:true,
-      icon:'Platform'
+      icon:'Menu'
     }
   },
     ]
@@ -110,7 +110,7 @@ export const constantroutes=[
     meat:{
       title:'商品管理',
       hidden:true,
-      icon:'Platform'
+      icon:'ShoppingCart'
     },
     children:[
       {
@@ -120,7 +120,7 @@ export const constantroutes=[
         meat:{
           title:'属性管理',
           hidden:true,
-          icon:'Platform'
+          icon:'ChromeFilled'
         },
       },
       {
@@ -130,7 +130,7 @@ export const constantroutes=[
         meat:{
           title:'SKU管理',
           hidden:true,
-          icon:'Platform'
+          icon:'Orange'
         }
       },
       {
@@ -140,7 +140,7 @@ export const constantroutes=[
         meat:{
           title:'SPU管理',
           hidden:true,
-          icon:'Platform'
+          icon:'Calendar'
         }
       },
       {
@@ -150,7 +150,7 @@ export const constantroutes=[
         meat:{
           title:'品牌管理',
           hidden:true,
-          icon:'Platform'
+          icon:'ShoppingTrolley'
         }
       },
     ]

@@ -13,7 +13,9 @@
       </el-scrollbar>
     </div>
     <div class="layout_right">
-      <div class="layout_tabber"></div>
+      <div class="layout_tabber">
+        <Tabbar></Tabbar>
+      </div>
       <div class="layout_main">
         <RouterView />
       </div>
@@ -26,6 +28,7 @@ import Menu from './menu/index.vue'
 import { constantroutes } from '@/router/routers'
 import { RouterView } from 'vue-router'
 import { useRoute } from 'vue-router'
+import Tabbar from '@/layout/tabbar/index.vue'
 </script>
 
 <style scoped lang="scss">
@@ -33,7 +36,6 @@ import { useRoute } from 'vue-router'
   display: flex;
   width: 100%;
   height: 100vh;
-  background: blue;
 
   // 左侧导航
   .layout_slider {
@@ -68,7 +70,6 @@ import { useRoute } from 'vue-router'
     .layout_tabber {
       width: 100%;
       height: $base-tabber-high;
-      background: red;
     }
 
     // 主要内容

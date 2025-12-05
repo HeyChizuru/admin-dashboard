@@ -1,6 +1,6 @@
 <template>
   <div class=''>
-    jhffevfjdkbdjkjkfjkcioancioaeh ieahu
+    主页
   </div>
 </template>
 
