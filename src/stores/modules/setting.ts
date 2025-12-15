@@ -3,7 +3,10 @@ import { defineStore } from 'pinia'
 export const useLayoutSettingStore = defineStore('SettingStore',{
   state:()=>{
     return {
-      collapse:false
+      // 侧边栏是否折叠
+      collapse:false,
+      // 刷新
+      refsh:0
     }
   }
 })

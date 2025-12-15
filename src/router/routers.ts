@@ -4,7 +4,7 @@ export const constantroutes=[
     path: '/login',
     name: 'login',
     component: () => import('@/views/login/index.vue'),
-    meat:{
+    meta:{
       title:'login',
       hidden:false
     }
@@ -13,7 +13,7 @@ export const constantroutes=[
     path:'/',
     name:'layout',
     component:()=>import('@/layout/index.vue'),
-    meat:{
+    meta:{
       title:'主页',
       hidden:true,
       icon:'House'
@@ -25,10 +25,10 @@ export const constantroutes=[
         path:'home',
         name:'home',
         component:()=>import('@/views/home/index.vue'),
-        meat:{
-          title:'主页',
+        meta:{
+          title:'',
           hidden:true,
-          icon:'House'
+          icon:''
         },
       },
     ]
@@ -37,7 +37,7 @@ export const constantroutes=[
     path:'/404',
     name:'404',
     component:()=>import('@/views/404/index.vue'),
-    meat:{
+    meta:{
       title:'404',
       hidden:false
     }
@@ -46,7 +46,7 @@ export const constantroutes=[
     path:'/:pathMatch(.*)*',
     name:'any',
     redirect:'/404',
-    meat:{
+    meta:{
       title:'',
       hidden:false
     }
@@ -55,7 +55,7 @@ export const constantroutes=[
     path:'/screen',
     name:'Screen',
     component:()=>import('@/views/screen/index.vue'),
-    meat:{
+    meta:{
       title:'数据大屏',
       hidden:true,
       icon:'Platform'
@@ -65,7 +65,7 @@ export const constantroutes=[
     path:'/acl',
     name:'Acl',
     component:()=>import('@/layout/index.vue'),
-    meat:{
+    meta:{
       title:'权限管理',
       hidden:true,
       icon:'Lock'
@@ -75,7 +75,7 @@ export const constantroutes=[
     path:'/acl/user',
     name:'User',
     component:()=>import('@/views/acl/user/index.vue'),
-    meat:{
+    meta:{
       title:'用户管理',
       hidden:true,
       icon:'User'
@@ -85,7 +85,7 @@ export const constantroutes=[
     path:'/acl/rul',
     name:'Rul',
     component:()=>import('@/views/acl/rul/index.vue'),
-    meat:{
+    meta:{
       title:'角色管理',
       hidden:true,
       icon:'UserFilled'
@@ -95,7 +95,7 @@ export const constantroutes=[
     path:'/acl/premission',
     name:'Premission',
     component:()=>import('@/views/acl/premission/index.vue'),
-    meat:{
+    meta:{
       title:'菜单管理',
       hidden:true,
       icon:'Menu'
@@ -107,7 +107,7 @@ export const constantroutes=[
     path:'/product',
     name:'Product',
     component:()=>import('@/layout/index.vue'),
-    meat:{
+    meta:{
       title:'商品管理',
       hidden:true,
       icon:'ShoppingCart'
@@ -117,7 +117,7 @@ export const constantroutes=[
         path:'/product/attr',
         name:'Attr',
         component:()=>import('@/views/product/attr/index.vue'),
-        meat:{
+        meta:{
           title:'属性管理',
           hidden:true,
           icon:'ChromeFilled'
@@ -127,7 +127,7 @@ export const constantroutes=[
         path:'/product/sku',
         name:'Sku',
         component:()=>import('@/views/product/sku/index.vue'),
-        meat:{
+        meta:{
           title:'SKU管理',
           hidden:true,
           icon:'Orange'
@@ -137,7 +137,7 @@ export const constantroutes=[
         path:'/product/spu',
         name:'Spu',
         component:()=>import('@/views/product/spu/index.vue'),
-        meat:{
+        meta:{
           title:'SPU管理',
           hidden:true,
           icon:'Calendar'
@@ -147,7 +147,7 @@ export const constantroutes=[
         path:'/product/trademark',
         name:'Trademark',
         component:()=>import('@/views/product/trademark/index.vue'),
-        meat:{
+        meta:{
           title:'品牌管理',
           hidden:true,
           icon:'ShoppingTrolley'

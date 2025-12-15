@@ -17,7 +17,7 @@
       <div class="layout_tabber">
         <Tabbar></Tabbar>
       </div>
-      <div class="layout_main">
+      <div class="layout_main" :key="refsh">
         <RouterView />
       </div>
     </div>
@@ -31,7 +31,12 @@ import { RouterView } from 'vue-router'
 import { useRoute } from 'vue-router'
 import Tabbar from '@/layout/tabbar/index.vue'
 import { useLayoutSettingStore } from '@/stores/modules/setting'
+
+
 const layoutSettingStore = useLayoutSettingStore()
+// 使用 computed 确保响应式
+import { computed } from 'vue'
+const refsh = computed(() => layoutSettingStore.refsh)
 </script>
 
 <style scoped lang="scss">

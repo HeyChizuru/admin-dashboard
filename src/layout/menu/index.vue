@@ -2,30 +2,30 @@
   <!-- 自定义组件动态生成菜单 -->
   <!-- 哭了 -->
   <template v-for="(item) in menulist" :key="item.path">
-    <el-menu-item v-if="!item.children && item.meat.hidden" :index="item.path">
+    <el-menu-item v-if="!item.children && item.meta.hidden" :index="item.path">
       <el-icon>
-        <component :is="item.meat.icon"></component>
+        <component :is="item.meta.icon"></component>
       </el-icon>
       <template #title>
-        <span>{{ item.meat.title }}</span>
+        <span>{{ item.meta.title }}</span>
       </template>
     </el-menu-item>
     <!-- 有且只有一个 -->
-    <el-menu-item v-if="item.children && item.children.length == 1 && item.meat.hidden" :index="item.path">
+    <el-menu-item v-if="item.children && item.children.length == 1 && item.meta.hidden" :index="item.path">
       <el-icon>
-        <component :is="item.meat.icon"></component>
+        <component :is="item.meta.icon"></component>
       </el-icon>
       <template #title>
-        <span>{{ item.meat.title }}</span>
+        <span>{{ item.meta.title }}</span>
       </template>
     </el-menu-item>
     <!-- 有子路由 -->
-    <el-sub-menu v-if="item.children && item.children.length > 1 && item.meat.hidden" :index="item.path">
+    <el-sub-menu v-if="item.children && item.children.length > 1 && item.meta.hidden" :index="item.path">
       <template #title>
         <el-icon>
-          <component :is="item.meat.icon"></component>
+          <component :is="item.meta.icon"></component>
         </el-icon>
-        <span>{{ item.meat.title }}</span>
+        <span>{{ item.meta.title }}</span>
       </template>
       <Menu :menulist="item.children"></Menu>
     </el-sub-menu>

@@ -1,5 +1,6 @@
 // 对axios进行封装 使用请求拦截器 响应拦截器
 import axios from 'axios'
+import { useUserStore } from '@/stores/modules/user'
 // 配置一个新的axios实例
 const request = axios.create({
   baseURL: import.meta.env.VITE_BASE_URL,
@@ -9,6 +10,11 @@ const request = axios.create({
 request.interceptors.request.use(
   (config) => {
     // config里面的headers属性可以设置请求头，携带公共token
+    const userStore = useUserStore()
+    if(userStore.token){
+      config.headers.Authorization = `Bearer ${userStore.token}`
+      console.log(config)
+    }
     return config
   }
 )

@@ -13,7 +13,7 @@
             <el-input type="possword" :prefix-icon="Lock" v-model="loginForm.password" show-password></el-input>
           </el-form-item>
           <el-form-item>
-            <el-button type="primary" class="login_button" @click="login">登录</el-button>
+            <el-button type="primary" class="login_button" @click="login" color="black">登录</el-button>
           </el-form-item>
         </el-form>
       </el-col>
@@ -74,17 +74,17 @@ const login = async () => {
   position: relative;
   width: 80%;
   top: 30vh;
-  background: url('@/assets/images/login_form.png') no-repeat;
+  background: rgba(255, 255, 255, 0.8) no-repeat;
   background-size: cover;
   padding: 40px;
 
   h1 {
-    color: white;
+    color: black;
     font-size: 40px;
   }
 
   h2 {
-    color: white;
+    color: black;
     font-size: 20px;
     margin: 20px 0;
   }

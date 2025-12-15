@@ -8,13 +8,22 @@
       </el-icon>
       <!-- 面包屑 -->
       <el-breadcrumb separator-icon="ArrowRight">
-        <el-breadcrumb-item>面包屑</el-breadcrumb-item>
-        <el-breadcrumb-item>面包屑</el-breadcrumb-item>
+        <el-breadcrumb-item v-for="(item) in useRoute().matched" :key="item.path" :to="item.path">
+          <el-icon v-if="item.meta.icon">
+            <component :is="item.meta.icon"></component>
+          </el-icon>
+          <span v-if="item.meta.title">
+            {{ item.meta.title }}
+          </span>
+        </el-breadcrumb-item>
       </el-breadcrumb>
     </div>
     <div class="tabbar-right">
-      <el-button size="default" icon="Refresh" circle></el-button>
-      <el-button size="default" icon="FullScreen" circle></el-button>
+      <!-- 刷新 -->
+      <el-button size="default" icon="Refresh" circle @click="layoutSettingStore.refsh++"></el-button>
+      <!-- 全屏 -->
+      <el-button size="default" icon="FullScreen" circle @click="fullScreen"></el-button>
+      <!-- 设置 -->
       <el-button size="default" icon="Setting" circle></el-button>
       <img src="/logo.svg" alt="">
       <!-- 下拉菜单 -->
@@ -36,7 +45,16 @@
 </template>
 <script setup lang='ts'>
 import { useLayoutSettingStore } from '@/stores/modules/setting'
+import { useRoute } from 'vue-router'
 const layoutSettingStore = useLayoutSettingStore()
+const fullScreen = () => {
+  let full = document.documentElement.requestFullscreen()
+  if (!full) {
+    document.documentElement.requestFullscreen()
+  } else {
+    document.exitFullscreen()
+  }
+}
 </script>
 
 <style scoped lang="scss">
