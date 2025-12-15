@@ -1,13 +1,14 @@
 <template>
   <div class='layout_container'>
-    <div class="layout_slider">
+    <div class="layout_slider" :class="{ collapse: layoutSettingStore.collapse }">
       <div class="logo">
         <a href="/"><img src="/logo.svg" alt=""></a>
         <h1>后台管理系统</h1>
       </div>
       <!-- 菜单 -->
       <el-scrollbar class="scrollbar">
-        <el-menu background-color="black" text-color="white" router :default-active="useRoute().path">
+        <el-menu background-color="black" text-color="white" router :default-active="useRoute().path"
+          :collapse="layoutSettingStore.collapse">
           <Menu :menulist="constantroutes"></Menu>
         </el-menu>
       </el-scrollbar>
@@ -29,6 +30,8 @@ import { constantroutes } from '@/router/routers'
 import { RouterView } from 'vue-router'
 import { useRoute } from 'vue-router'
 import Tabbar from '@/layout/tabbar/index.vue'
+import { useLayoutSettingStore } from '@/stores/modules/setting'
+const layoutSettingStore = useLayoutSettingStore()
 </script>
 
 <style scoped lang="scss">
@@ -42,6 +45,7 @@ import Tabbar from '@/layout/tabbar/index.vue'
     width: $base-menu-width;
     height: 100vh;
     background: $base-menu-bg;
+    transition: all 0.3s ease-in-out;
 
     .logo {
       display: flex;
@@ -54,17 +58,29 @@ import Tabbar from '@/layout/tabbar/index.vue'
 
       h1 {
         color: white;
+        min-width: 120px; // 确保h1有最小宽度，保持布局稳定
+        white-space: nowrap; // 防止文字换行
       }
     }
 
     .scrollbar {
       height: calc(100vh - $base-menu-logo);
     }
+
+    // 左侧导航收起
+    &.collapse {
+      width: $base-menu-width-collapse;
+
+      h1 {
+        display: none;
+      }
+    }
   }
 
   // 右侧
   .layout_right {
     width: 100%;
+    transition: all 0.3s ease-in-out;
 
     // 顶部导航
     .layout_tabber {

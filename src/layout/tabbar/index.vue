@@ -3,8 +3,8 @@
     <div class="tabbar-left">
       <!-- 隐藏菜单 -->
       <!-- 点击事件，每次点击对isCollapse取反 -->
-      <el-icon size=24 style="margin-right: 10px;" @click="isCollapse = !isCollapse">
-        <component :is="isCollapse ? 'Expand' : 'Fold'"></component>
+      <el-icon size=24 style="margin-right: 10px;" @click="layoutSettingStore.collapse = !layoutSettingStore.collapse">
+        <component :is="layoutSettingStore.collapse ? 'Expand' : 'Fold'"></component>
       </el-icon>
       <!-- 面包屑 -->
       <el-breadcrumb separator-icon="ArrowRight">
@@ -35,8 +35,8 @@
   </div>
 </template>
 <script setup lang='ts'>
-import { ref } from 'vue'
-const isCollapse = ref(false)
+import { useLayoutSettingStore } from '@/stores/modules/setting'
+const layoutSettingStore = useLayoutSettingStore()
 </script>
 
 <style scoped lang="scss">

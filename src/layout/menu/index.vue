@@ -1,36 +1,35 @@
 <template>
-  <div>
-    <!-- 自定义组件动态生成菜单 -->
-    <template v-for="(item) in menulist" :key="item.path">
-      <el-menu-item v-if="!item.children && item.meat.hidden" :index="item.path">
+  <!-- 自定义组件动态生成菜单 -->
+  <!-- 哭了 -->
+  <template v-for="(item) in menulist" :key="item.path">
+    <el-menu-item v-if="!item.children && item.meat.hidden" :index="item.path">
+      <el-icon>
+        <component :is="item.meat.icon"></component>
+      </el-icon>
+      <template #title>
+        <span>{{ item.meat.title }}</span>
+      </template>
+    </el-menu-item>
+    <!-- 有且只有一个 -->
+    <el-menu-item v-if="item.children && item.children.length == 1 && item.meat.hidden" :index="item.path">
+      <el-icon>
+        <component :is="item.meat.icon"></component>
+      </el-icon>
+      <template #title>
+        <span>{{ item.meat.title }}</span>
+      </template>
+    </el-menu-item>
+    <!-- 有子路由 -->
+    <el-sub-menu v-if="item.children && item.children.length > 1 && item.meat.hidden" :index="item.path">
+      <template #title>
         <el-icon>
           <component :is="item.meat.icon"></component>
         </el-icon>
-        <template #title>
-          <span>{{ item.meat.title }}</span>
-        </template>
-      </el-menu-item>
-      <!-- 有且只有一个 -->
-      <el-menu-item v-if="item.children && item.children.length == 1 && item.meat.hidden" :index="item.path">
-        <el-icon>
-          <component :is="item.meat.icon"></component>
-        </el-icon>
-        <template #title>
-          <span>{{ item.meat.title }}</span>
-        </template>
-      </el-menu-item>
-      <!-- 有子路由 -->
-      <el-sub-menu v-if="item.children && item.children.length > 1 && item.meat.hidden" :index="item.path">
-        <template #title>
-          <el-icon>
-            <component :is="item.meat.icon"></component>
-          </el-icon>
-          <span>{{ item.meat.title }}</span>
-        </template>
-        <Menu :menulist="item.children"></Menu>
-      </el-sub-menu>
-    </template>
-  </div>
+        <span>{{ item.meat.title }}</span>
+      </template>
+      <Menu :menulist="item.children"></Menu>
+    </el-sub-menu>
+  </template>
 </template>
 
 <script setup lang="ts">
