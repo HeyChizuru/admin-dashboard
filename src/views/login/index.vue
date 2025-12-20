@@ -29,7 +29,7 @@ import { useRouter } from 'vue-router'
 import { ElNotification } from 'element-plus'
 let useStore = useUserStore()
 // 收集账号密码
-let loginForm = reactive({ username: 'admin', password: '123456' })
+let loginForm = reactive({ username: 'admin', password: '111111' })
 // 表单校验
 const rules = {
   username: [

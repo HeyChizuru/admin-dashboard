@@ -36,6 +36,12 @@ import { useLayoutSettingStore } from '@/stores/modules/setting'
 const layoutSettingStore = useLayoutSettingStore()
 // 使用 computed 确保响应式
 import { computed } from 'vue'
+import { onMounted } from 'vue'
+import { useUserStore } from '@/stores/modules/user'
+onMounted(() => {
+  const userStore = useUserStore()
+  userStore.getUserInfo()
+})
 const refsh = computed(() => layoutSettingStore.refsh)
 </script>
 

@@ -1,5 +1,5 @@
 import { createProdMockServer } from 'vite-plugin-mock/es/createProdMockServer'
-import userMock from './user'
+// import userMock from './user'
 
 // 导出所有mock模块
 export const mockModules = [...userMock]

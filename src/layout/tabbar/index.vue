@@ -25,18 +25,18 @@
       <el-button size="default" icon="FullScreen" circle @click="fullScreen"></el-button>
       <!-- 设置 -->
       <el-button size="default" icon="Setting" circle></el-button>
-      <img src="/logo.svg" alt="">
+      <img :src="userStore.avater" alt="">
       <!-- 下拉菜单 -->
       <el-dropdown>
         <span class="el-dropdown-link">
-          admin
+          {{ userStore.name }}
           <el-icon class="el-icon--right">
             <arrow-down />
           </el-icon>
         </span>
         <template #dropdown>
           <el-dropdown-menu>
-            <el-dropdown-item>退出登录</el-dropdown-item>
+            <el-dropdown-item @click="logout">退出登录</el-dropdown-item>
           </el-dropdown-menu>
         </template>
       </el-dropdown>
@@ -45,14 +45,32 @@
 </template>
 <script setup lang='ts'>
 import { useLayoutSettingStore } from '@/stores/modules/setting'
+import { useUserStore } from '@/stores/modules/user'
 import { useRoute } from 'vue-router'
+import { useRouter } from 'vue-router'
+import { ElNotification } from 'element-plus'
 const layoutSettingStore = useLayoutSettingStore()
+const userStore = useUserStore()
+let $router = useRouter()
 const fullScreen = () => {
   let full = document.documentElement.requestFullscreen()
   if (!full) {
     document.documentElement.requestFullscreen()
   } else {
     document.exitFullscreen()
+  }
+}
+// 退出登录
+const logout = async () => {
+  try {
+    await userStore.logout()
+    $router.push('/Login')
+  } catch (error) {
+    console.log(error)
+    ElNotification({
+      type: 'error',
+      message: (error as Error).message
+    })
   }
 }
 </script>

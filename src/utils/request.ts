@@ -11,9 +11,8 @@ request.interceptors.request.use(
   (config) => {
     // config里面的headers属性可以设置请求头，携带公共token
     const userStore = useUserStore()
-    if(userStore.token){
-      config.headers.Authorization = `Bearer ${userStore.token}`
-      console.log(config)
+    if (userStore.token) {
+      config.headers.token = userStore.token
     }
     return config
   }
