@@ -3,7 +3,6 @@ import { useUserStore } from '@/stores/modules/user'
 // 全局前置首位
 router.beforeEach((to, from, next) => {
   const userStore = useUserStore()
-  console.log(userStore.token)
   if (userStore.token) {
     // 登录成功后无法访问登录页面
     if (to.path === '/Login') {

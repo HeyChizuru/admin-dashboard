@@ -1,10 +1,10 @@
 <template>
   <div class=''>
-    spu管理
+    spu
   </div>
 </template>
 
-<script setup lang='ts'>
+<script setup lang="ts">
 
 </script>
 

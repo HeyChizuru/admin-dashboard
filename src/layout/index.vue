@@ -103,7 +103,6 @@ const refsh = computed(() => layoutSettingStore.refsh)
     .layout_main {
       width: 100%;
       height: calc(100vh - $base-tabber-high);
-      background: yellow;
       padding: 20px;
     }
   }
