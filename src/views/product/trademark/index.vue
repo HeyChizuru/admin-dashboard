@@ -15,8 +15,8 @@
         </template>
       </el-table-column>
       <el-table-column label="操作">
-        <template #default="{ }">
-          <el-button type="primary" icon="Edit" @click="updateTrademark"></el-button>
+        <template #default="{ row }">
+          <el-button type="primary" icon="Edit" @click="updateTrademark(row)" color="black"></el-button>
           <el-button type="danger" icon="Delete"></el-button>
         </template>
       </el-table-column>
@@ -25,12 +25,12 @@
       :background="background" layout="prev, pager, next, jumper" :total="total" @current-change="getTradeMarkList" />
   </el-card>
   <!-- 对话框 -->
-  <el-dialog v-model="dialogVisible" title="添加品牌" width="800">
-    <el-form>
-      <el-form-item label="品牌名称">
+  <el-dialog v-model="dialogVisible" :title="trademarkForm.id ? '修改品牌' : '添加品牌'" width="800">
+    <el-form :model="trademarkForm" :rules="rules" ref="l_form">
+      <el-form-item label="品牌名称" prop="tmName">
         <el-input placeholder="请输入品牌名称" v-model="trademarkForm.tmName"></el-input>
       </el-form-item>
-      <el-form-item label="品牌logo">
+      <el-form-item label="品牌logo" prop="logoUrl">
         <el-upload class="avatar-uploader" action="/api/admin/product/fileUpload"
           :headers="{ 'token': userStore.token }" :show-file-list="false" :on-success="handleAvatarSuccess"
           :before-upload="beforeAvatarUpload">
@@ -49,7 +49,7 @@
 </template>
 <script setup lang='ts'>
 import { ref } from 'vue'
-import { regetTradeMarkListByPage, reAddTradeMark } from '@/api/trademark/index'
+import { regetTradeMarkListByPage, reAddTradeMark, reUpdateTradeMark } from '@/api/trademark/index'
 import type { TradeMarkPageResponse, TradeMark } from '@/api/trademark/type'
 import { onMounted } from 'vue'
 import { ElMessage } from 'element-plus'
@@ -79,6 +79,9 @@ const trademarkForm = ref<TradeMark>({
   tmName: '',
   logoUrl: ''
 })
+// 表单实例
+const l_form = ref()
+// 获取品牌列表
 const getTradeMarkList = async () => {
   const res: TradeMarkPageResponse = await regetTradeMarkListByPage(currentPage.value, pageSize.value)
   if (res.code === 200) {
@@ -88,32 +91,64 @@ const getTradeMarkList = async () => {
 }
 // 组件挂载时获取品牌列表
 onMounted(() => getTradeMarkList())
-// 添加品牌
+// 添加/修改品牌
 const addTrademark = () => {
   dialogVisible.value = true
+  // 清空表单校验
+  if (l_form.value) {
+    l_form.value.clearValidate()
+  }
   trademarkForm.value = {
+    id: undefined,
     tmName: '',
     logoUrl: ''
   }
 }
 // 更新品牌
-const updateTrademark = () => {
+const updateTrademark = async (row: TradeMark) => {
   dialogVisible.value = true
+  Object.assign(trademarkForm.value, row)
+
 }
 // 取消添加品牌
 const cancel = () => {
   dialogVisible.value = false
 }
-// 确认添加品牌
+// 确认添加/修改品牌
 const confirm = async () => {
-  const res = await reAddTradeMark(trademarkForm.value)
-  if (res.code === 200) {
-    ElMessage({
-      message: '添加品牌成功',
-      type: 'success'
-    })
+  // 表单校验
+  await l_form.value.validate()
+  let res
+  if (trademarkForm.value.id) {
+    res = await reUpdateTradeMark(trademarkForm.value)
+    if (res.code === 200) {
+      ElMessage({
+        message: '修改品牌成功',
+        type: 'success'
+      })
+    } else {
+      ElMessage({
+        message: '修改品牌失败',
+        type: 'error'
+      })
+    }
+    dialogVisible.value = false
+  } else {
+    res = await reAddTradeMark(trademarkForm.value)
+    if (res.code === 200) {
+      ElMessage({
+        message: '添加品牌成功',
+        type: 'success'
+      })
+    } else {
+      ElMessage({
+        message: '添加品牌失败',
+        type: 'error'
+      })
+    }
     dialogVisible.value = false
   }
+  getTradeMarkList()
 }
 // 限制品牌logo上传的文件类型
 const beforeAvatarUpload: UploadProps['beforeUpload'] = (rawFile) => {
@@ -133,7 +168,15 @@ const handleAvatarSuccess: UploadProps['onSuccess'] = (
 ) => {
   trademarkForm.value.logoUrl = response.data
 }
-
+// 品牌表单校验规则
+const rules = {
+  tmName: [
+    { required: true, message: '品牌名称不能为空', trigger: 'blur' }
+  ],
+  logoUrl: [
+    { required: true, message: '品牌logo不能为空', trigger: 'blur' }
+  ]
+}
 </script>
 <style scoped lang="scss">
 // 自己修复了el-table响应式问题

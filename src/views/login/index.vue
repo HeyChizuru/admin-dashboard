@@ -41,6 +41,7 @@ const rules = {
     { required: true, message: '密码不能为空', trigger: 'blur' }
   ]
 }
+// 登录表单实例
 const l_form = ref()
 let $router = useRouter()
 //登录事件
