@@ -22,8 +22,8 @@ export interface TradeMarkResponse {
   message: string
   data: TradeMark[]
 }
-// 新增品牌和修改品牌响应类型
-export interface TradeMarkAddUpdateResponse {
+// 新增品牌和修改品牌和删除品牌响应类型
+export interface TradeMarkAddUpdateDeleteResponse {
   code: number
   message: string
   data: string

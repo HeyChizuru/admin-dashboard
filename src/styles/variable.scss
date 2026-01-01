@@ -1,3 +1,20 @@
+// 修改element-plus样式
+.el-button--primary {
+  --el-button-text-color: var(--el-color-white);
+  --el-button-bg-color: black !important;
+  --el-button-border-color: black;
+  --el-button-outline-color: var(--el-color-primary-light-5);
+  --el-button-active-color: black;
+  --el-button-hover-text-color: var(--el-color-white);
+  --el-button-hover-link-text-color: var(--el-color-primary-light-5);
+  --el-button-hover-bg-color: var(--el-color-primary-light-3);
+  --el-button-hover-border-color: var(--el-color-primary-light-3);
+  --el-button-active-bg-color: black;
+  --el-button-active-border-color: black;
+  --el-button-disabled-text-color: var(--el-color-white);
+  --el-button-disabled-bg-color: var(--el-color-primary-light-5);
+  --el-button-disabled-border-color: var(--el-color-primary-light-5);
+}
 // 主页左侧宽度
 $base-menu-width:340px;
 // 主页左侧背景颜色
