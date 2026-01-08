@@ -53,11 +53,24 @@ const layoutSettingStore = useLayoutSettingStore()
 const userStore = useUserStore()
 let $router = useRouter()
 const fullScreen = () => {
-  let full = document.documentElement.requestFullscreen()
-  if (!full) {
+  if (!document.fullscreenElement) {
+    // 进入全屏
     document.documentElement.requestFullscreen()
+      .then(() => {
+        console.log('进入全屏模式')
+      })
+      .catch(err => {
+        console.error('进入全屏失败:', err)
+      })
   } else {
+    // 退出全屏
     document.exitFullscreen()
+      .then(() => {
+        console.log('退出全屏模式')
+      })
+      .catch(err => {
+        console.error('退出全屏失败:', err)
+      })
   }
 }
 // 退出登录

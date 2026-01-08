@@ -1,20 +1,27 @@
 // 修改element-plus样式
-.el-button--primary {
-  --el-button-text-color: var(--el-color-white);
-  --el-button-bg-color: black !important;
-  --el-button-border-color: black;
-  --el-button-outline-color: var(--el-color-primary-light-5);
-  --el-button-active-color: black;
-  --el-button-hover-text-color: var(--el-color-white);
-  --el-button-hover-link-text-color: var(--el-color-primary-light-5);
-  --el-button-hover-bg-color: var(--el-color-primary-light-3);
-  --el-button-hover-border-color: var(--el-color-primary-light-3);
-  --el-button-active-bg-color: black;
-  --el-button-active-border-color: black;
-  --el-button-disabled-text-color: var(--el-color-white);
-  --el-button-disabled-bg-color: var(--el-color-primary-light-5);
-  --el-button-disabled-border-color: var(--el-color-primary-light-5);
+:root {
+  // 设置主要颜色为黑色主题
+  --el-color-primary: #000000;
+  --el-color-primary-light-3: #4d4d4d;
+  --el-color-primary-light-5: #808080;
+  --el-color-primary-light-7: #b3b3b3;
+  --el-color-primary-light-8: #cccccc;
+  --el-color-primary-light-9: #e6e6e6;
+  --el-color-primary-dark-2: #000000;
+  
+  // 按钮颜色
+  --el-button-bg-color: #000000;
+  --el-button-border-color: #000000;
+  --el-button-text-color: #ffffff;
+  --el-menu-active-color: var(--el-color-primary);
+  --el-menu-text-color: var(--el-text-color-primary);
+  --el-menu-hover-text-color: var(--el-color-primary);
 }
+:focus {
+  outline: none!important;
+}
+
+
 // 主页左侧宽度
 $base-menu-width:340px;
 // 主页左侧背景颜色

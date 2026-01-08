@@ -204,62 +204,6 @@ const deleteTrademark = async (id: number) => {
   width: calc(100% - 4px) !important;
 }
 
-// 修改el-pagination分页器样式
-:deep(.el-pagination) {
-  .el-pager {
-    li {
-      &.active {
-        background-color: #000 !important;
-        border-color: #000 !important;
-        color: #fff !important;
-
-        &:hover {
-          background-color: #333 !important;
-        }
-      }
-
-      &:not(.active) {
-        background-color: #fff;
-        border-color: #dcdfe6;
-        color: #606266;
-
-        &:hover {
-          color: #000;
-          border-color: #000;
-        }
-      }
-    }
-  }
-
-  .btn-prev,
-  .btn-next {
-    &:not(.disabled) {
-      &:hover {
-        color: #000;
-        border-color: #000;
-      }
-    }
-
-    &.disabled {
-      color: #c0c4cc;
-      background-color: #f5f7fa;
-    }
-  }
-
-  .el-pagination__jump {
-    color: #606266;
-
-    .el-pagination__editor {
-      .el-input__inner {
-        &:focus {
-          border-color: #000;
-        }
-      }
-    }
-  }
-}
-
-
 // 品牌logo上传组件样式
 .avatar-uploader .avatar {
   width: 178px;
