@@ -13,13 +13,13 @@ export interface CategoryData {
 }
 // 属性值数据类型
 export interface AttrValueData {
-  id: number
-  attrId: string
+  id?: number
+  attrId?: string
   valueName: string
 }
 // 属性信息数据类型
 export interface AttrInfoData {
-  id: number
+  id?: number
   attrName: string
   attrValueList: AttrValueData[]
   categoryId: number
@@ -29,5 +29,11 @@ export interface AttrInfoData {
 export interface AttrInfoListResponse {
   code: number
   data: AttrInfoData[]
+  message: string
+}
+// 添加和修改和删除属性响应数据
+export interface AddOrUpdateAttrResponse {
+  code: number
+  data: string
   message: string
 }

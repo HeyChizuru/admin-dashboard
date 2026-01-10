@@ -2,17 +2,20 @@
   <el-card>
     <el-form :inline="true">
       <el-form-item label="一级分类">
-        <el-select style="width: 220px;" placeholder="请选择一级分类" v-model="id1" @change="getAttrList2(Number(id1))">
+        <el-select :disabled="!showAttrList" style="width: 220px;" placeholder="请选择一级分类" v-model="id1"
+          @change="getAttrList2(Number(id1))">
           <el-option v-for="item in attrList1" :key="item.id" :value="item.id" :label="item.name"></el-option>
         </el-select>
       </el-form-item>
       <el-form-item label="二级分类">
-        <el-select style="width: 220px;" placeholder="请选择二级分类" v-model="id2" @change="getAttrList3(Number(id2))">
+        <el-select :disabled="!showAttrList" style="width: 220px;" placeholder="请选择二级分类" v-model="id2"
+          @change="getAttrList3(Number(id2))">
           <el-option v-for="item in attrList2" :key="item.id" :value="item.id" :label="item.name"></el-option>
         </el-select>
       </el-form-item>
       <el-form-item label="三级分类">
-        <el-select style="width: 220px;" placeholder="请选择三级分类" v-model="id3" @change="getid3(Number(id3))">
+        <el-select :disabled="!showAttrList" style="width: 220px;" placeholder="请选择三级分类" v-model="id3"
+          @change="getid3(Number(id3))">
           <el-option v-for="item in attrList3" :key="item.id" :value="item.id" :label="item.name"></el-option>
         </el-select>
       </el-form-item>
@@ -40,6 +43,8 @@ const id2 = ref('')
 const id3 = ref('')
 // 定义发送父组件事件
 const emit = defineEmits(['category-selected1', 'category-selected2', 'category-selected3'])
+// 添加和修改属性时，根据showAttrList判断是否禁用分类选择器
+defineProps(['showAttrList'])
 // 获取一级分类列表
 const getAttrList1 = async () => {
   const res = await regetAttrList1()
@@ -81,7 +86,6 @@ const getAttrList3 = async (id: number) => {
 const getid3 = (id: number) => {
   emit('category-selected3', id)
 }
-
 onMounted(() => {
   getAttrList1()
 })
