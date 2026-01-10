@@ -62,7 +62,7 @@
 <script setup lang='ts'>
 import Category from '@/components/Category.vue'
 import { useLayoutSettingStore } from '@/stores/modules/setting'
-import { ref, watch, } from 'vue'
+import { ref, watch } from 'vue'
 import { regetAttrInfoList, reAddOrUpdateAttr, reDeleteAttr } from '@/api/attr'
 import type { AttrInfoListResponse, AttrInfoData, AddOrUpdateAttrResponse, AttrValueData } from '@/api/attr/type'
 import { ElMessage } from 'element-plus'
